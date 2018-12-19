@@ -67,6 +67,8 @@ class JackTokenizer:
                                     self.xml_file.write(JackTokenizer.process_prev_string(''.join(list_cur_item)))
             cur_line = self.jack_file.readline()
         self.xml_file.write('</tokens>\n')
+        self.xml_file.close()
+        self.jack_file.close()
 
     @staticmethod
     def process_prev_string(prev_string):
@@ -110,12 +112,14 @@ class JackTokenizer:
 class CompilationEngine:
     def __init__(self, file_name):
         self.t_xml_file = open(file_name.replace('.jack', 'T.xml'), 'r')
-        self.xml_file = open(file_name.replace('T.xml', '.xml'), 'w')
+        self.xml_file = open(file_name.replace('.jack', '.xml'), 'w')
         self.list_tokens = []
         cur_line = self.t_xml_file.readline()
         while cur_line:
             self.list_tokens.append(cur_line.split())
             cur_line = self.t_xml_file.readline()
+        self.list_tokens = self.list_tokens[1:-1]
+        self.t_xml_file.close()
 
     def compile_class(self):
         output = '<class>\n\t' + JackTokenizer.keyword('class') + '\t' + JackTokenizer.identifier(self.list_tokens[2][1]) + '\t' + JackTokenizer.symbol('{')
@@ -124,17 +128,16 @@ class CompilationEngine:
             if self.list_tokens[i][1] in ['static', 'field']:
                 for m in range(i+2, len(self.list_tokens)):
                     if self.list_tokens[m][1] == ';':
-                        output += CompilationEngine.compile_class_var_dec(self.list_tokens[i, m+1])
+                        output += CompilationEngine.compile_class_var_dec(self.list_tokens[i:m+1])
                         break
             elif self.list_tokens[i][1] in ['constructor', 'function', 'method']:
                 subroutine_head_indexes.append(i)
-        for head_index in subroutine_head_indexes:
-            if subroutine_head_indexes.index(head_index) == -1:
-                output += CompilationEngine.compile_subroutine(self.list_tokens[head_index: -2])
-            else:
-                output += CompilationEngine.compile_subroutine(self.list_tokens[head_index: subroutine_head_indexes.index(head_index)+1])
+        for m in range(len(subroutine_head_indexes)-1):
+            output += CompilationEngine.compile_subroutine(self.list_tokens[subroutine_head_indexes[m]: subroutine_head_indexes[m+1]])
+        output += CompilationEngine.compile_subroutine(self.list_tokens[subroutine_head_indexes[-1]: -2])
         output += '\t' + JackTokenizer.symbol('}') + '<\class>\n'
         self.xml_file.write(output)
+        self.xml_file.close()
         return output
 
     @staticmethod
@@ -150,8 +153,8 @@ class CompilationEngine:
         output = '\t<subroutineDec>\n'
         for token in tokens[:4]:
             output += '\t\t' + ' '.join(token)
-        output += CompilationEngine.compile_parameter_list(tokens[tokens.index('(')+1:tokens.index(')')]) + '\t\t' + JackTokenizer.symbol(')') + '\t\t<subroutineBody>\n\t\t' + JackTokenizer.symbol('{')
-        for i in range(tokens.index('{')+1, len(tokens)):
+        output += CompilationEngine.compile_parameter_list(tokens[[token[1] for token in tokens].index('(')+1:[token[1] for token in tokens].index(')')]) + '\t\t' + JackTokenizer.symbol(')') + '\t\t<subroutineBody>\n\t\t' + JackTokenizer.symbol('{')
+        for i in range([token[1] for token in tokens].index('{')+1, len(tokens)):
             if tokens[i][1] == 'var':
                 for m in range(i+2, len(tokens)):
                     if tokens[m][1] == ';':
@@ -184,7 +187,7 @@ class CompilationEngine:
         statement_head_types_indexes = []
         for i in range(len(tokens)):
             if tokens[i][1] in ['let', 'if', 'while', 'do', 'return']:
-                statement_head_types_indexes.append([tokens[i][1], tokens[i][0]])
+                statement_head_types_indexes.append([tokens[i][1], i])
         for i in range(len(statement_head_types_indexes)):
             if i == len(statement_head_types_indexes)-1:
                 if statement_head_types_indexes[i][0] == 'let':
@@ -214,9 +217,9 @@ class CompilationEngine:
     @staticmethod
     def compile_do(tokens):
         output = '\t\t\t\t<doStatement>\n'
-        for token in tokens[:tokens.index('(')+1]:
+        for token in tokens[:[token[1] for token in tokens].index('(')+1]:
             output += '\t\t\t\t\t' + ' '.join(token)
-        output += CompilationEngine.compile_expression_list(tokens[tokens.index('(')+1:tokens.index(')')]) + '\t\t\t\t\t' + JackTokenizer.symbol(')') + tokens[-1] + '\t\t\t\t</doStatement>\n'
+        output += CompilationEngine.compile_expression_list(tokens[[token[1] for token in tokens].index('(')+1:[token[1] for token in tokens].index(')')]) + '\t\t\t\t\t' + JackTokenizer.symbol(')') + tokens[-1] + '\t\t\t\t</doStatement>\n'
         return output
     
     @staticmethod
@@ -225,8 +228,8 @@ class CompilationEngine:
         for token in tokens[:3]:
             output += '\t\t\t\t\t' + ' '.join(token)
         if tokens[2][1] == '[':
-            output += CompilationEngine.compile_expression(tokens[3:tokens.index(']')]) + '\t\t\t\t\t' + JackTokenizer.symbol(']') + '\t\t\t\t\t' + JackTokenizer.symbol('=')
-        output += CompilationEngine.compile_expression(tokens[tokens.index('=')+1:tokens.index(';')]) + '\t\t\t\t\t' + tokens[-1] + '\t\t\t\t</letStatement>\n'
+            output += CompilationEngine.compile_expression(tokens[3:[token[1] for token in tokens].index(']')]) + '\t\t\t\t\t' + JackTokenizer.symbol(']') + '\t\t\t\t\t' + JackTokenizer.symbol('=')
+        output += CompilationEngine.compile_expression(tokens[[token[1] for token in tokens].index('=')+1:[token[1] for token in tokens].index(';')]) + '\t\t\t\t\t' + tokens[-1] + '\t\t\t\t</letStatement>\n'
         return output
     
     @staticmethod
@@ -234,7 +237,7 @@ class CompilationEngine:
         output = '\t\t\t\t<whileStatement>\n'
         for token in tokens[:2]:
             output += '\t\t\t\t\t' + ' '.join(token)
-        output += CompilationEngine.compile_expression(tokens[2:tokens.index(')')]) + '\t\t\t\t\t' + JackTokenizer.symbol(')') + '\t\t\t\t\t' + JackTokenizer.symbol('{') + CompilationEngine.compile_statements(tokens[tokens.index('{')+1:tokens[::-1].index('}')]) + '\t\t\t\t\t' + JackTokenizer.symbol('}') + '\t\t\t\t</whileStatement>\n'
+        output += CompilationEngine.compile_expression(tokens[2:[token[1] for token in tokens].index(')')]) + '\t\t\t\t\t' + JackTokenizer.symbol(')') + '\t\t\t\t\t' + JackTokenizer.symbol('{') + CompilationEngine.compile_statements(tokens[[token[1] for token in tokens].index('{')+1:tokens[::-1].index('}')]) + '\t\t\t\t\t' + JackTokenizer.symbol('}') + '\t\t\t\t</whileStatement>\n'
         return output
     
     @staticmethod
@@ -243,7 +246,7 @@ class CompilationEngine:
         if tokens[1][1] == ';':
             output += '\t\t\t\t\t' + ' '.join(tokens[1])
         else:
-            output += CompilationEngine.compile_expression(tokens[1:tokens.index(';')]) + '\t\t\t\t\t' + tokens[-1] + '\t\t\t\t</returnStatement>\n'
+            output += CompilationEngine.compile_expression(tokens[1:[token[1] for token in tokens].index(';')]) + '\t\t\t\t\t' + tokens[-1] + '\t\t\t\t</returnStatement>\n'
         return output
     
     @staticmethod
@@ -251,14 +254,14 @@ class CompilationEngine:
         output = '\t\t\t\t<ifStatement>\n'
         for token in tokens[:2]:
             output += '\t\t\t\t\t' + ' '.join(token)
-        output += CompilationEngine.compile_expression(tokens[2:tokens.index(')')]) + '\t\t\t\t\t' + JackTokenizer.symbol(')') + '\t\t\t\t\t' + JackTokenizer.symbol('{')
+        output += CompilationEngine.compile_expression(tokens[2:[token[1] for token in tokens].index(')')]) + '\t\t\t\t\t' + JackTokenizer.symbol(')') + '\t\t\t\t\t' + JackTokenizer.symbol('{')
         if 'else' in tokens:
-            output += CompilationEngine.compile_statements(tokens[tokens.index('{')+1, (tokens[:tokens.index('else')])[::-1].index('}')]) + '\t\t\t\t\t' + JackTokenizer.symbol('}')
-            for token in tokens[tokens.index('else'):tokens.index('else')+2]:
+            output += CompilationEngine.compile_statements(tokens[[token[1] for token in tokens].index('{')+1, (tokens[:[token[1] for token in tokens].index('else')])[::-1].index('}')]) + '\t\t\t\t\t' + JackTokenizer.symbol('}')
+            for token in tokens[[token[1] for token in tokens].index('else'):[token[1] for token in tokens].index('else')+2]:
                 output += '\t\t\t\t\t' + ' '.join(token)
-            output += CompilationEngine.compile_expression(tokens[tokens.index('else')+2:tokens[::-1].index('}')]) + '\t\t\t\t\t' + JackTokenizer.symbol('}')
+            output += CompilationEngine.compile_expression(tokens[[token[1] for token in tokens].index('else')+2:tokens[::-1].index('}')]) + '\t\t\t\t\t' + JackTokenizer.symbol('}')
         else:
-            output += CompilationEngine.compile_statements(tokens[tokens.index('{')+1, tokens[::-1].index('}')]) + '\t\t\t\t\t' + JackTokenizer.symbol('}')
+            output += CompilationEngine.compile_statements(tokens[[token[1] for token in tokens].index('{')+1, tokens[::-1].index('}')]) + '\t\t\t\t\t' + JackTokenizer.symbol('}')
         output += '\t\t\t\t</ifStatement>\n'
         return output
 
@@ -293,5 +296,4 @@ class JackAnalyzer:
         test_compilation_engine.compile_class()
 
 
-test_jack_tokenizer = JackTokenizer('Square/SquareGame.jack')
-test_jack_tokenizer.advance()
+test_jack_analyzer = JackAnalyzer('ExpressionLessSquare/Main.jack')
