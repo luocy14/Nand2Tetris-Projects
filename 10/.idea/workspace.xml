@@ -2,93 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="251588fc-9b69-40cf-8dbc-3f195f49ad56" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../06/bin/Add.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../06/bin/Add.hack" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../06/bin/Max.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../06/bin/Max.hack" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../06/bin/MaxL.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../06/bin/MaxL.hack" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../06/bin/Pong.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../06/bin/Pong.hack" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../06/bin/PongL.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../06/bin/PongL.hack" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../06/bin/Rect.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../06/bin/Rect.hack" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../06/bin/RectL.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../06/bin/RectL.hack" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/BasicTest/BasicTest.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/BasicTest/BasicTest.cmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/BasicTest/BasicTest.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/BasicTest/BasicTest.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/BasicTest/BasicTest.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/BasicTest/BasicTestVME.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/FibonacciElement/FibonacciElement.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/FibonacciElement/FibonacciElement.cmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/FibonacciElement/FibonacciElement.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/FibonacciElement/FibonacciElement.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/FibonacciElement/FibonacciElementVME.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/FibonacciElement/Main.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/FibonacciElement/Sys.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/NestedCall/NestedCall.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/NestedCall/NestedCall.cmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/NestedCall/NestedCall.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/NestedCall/NestedCall.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/NestedCall/NestedCall.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/NestedCall/NestedCallStack.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/NestedCall/NestedCallVME.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/NestedCall/Sys.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/SimpleFunction/SimpleFunction.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/SimpleFunction/SimpleFunction.cmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/SimpleFunction/SimpleFunction.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/SimpleFunction/SimpleFunction.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/SimpleFunction/SimpleFunction.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/SimpleFunction/SimpleFunctionVME.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/StaticsTest/Class1.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/StaticsTest/Class2.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/StaticsTest/StaticsTest.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/StaticsTest/StaticsTest.cmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/StaticsTest/StaticsTest.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/StaticsTest/StaticsTest.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/StaticsTest/StaticsTestVME.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/FunctionCalls/StaticsTest/Sys.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/PointerTest/PointerTest.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/PointerTest/PointerTest.cmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/PointerTest/PointerTest.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/PointerTest/PointerTest.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/PointerTest/PointerTest.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/PointerTest/PointerTestVME.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/ProgramFlow/BasicLoop/BasicLoop.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/ProgramFlow/BasicLoop/BasicLoop.cmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/ProgramFlow/BasicLoop/BasicLoop.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/ProgramFlow/BasicLoop/BasicLoop.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/ProgramFlow/BasicLoop/BasicLoop.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/ProgramFlow/BasicLoop/BasicLoopVME.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/ProgramFlow/FibonacciSeries/FibonacciSeries.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/ProgramFlow/FibonacciSeries/FibonacciSeries.cmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/ProgramFlow/FibonacciSeries/FibonacciSeries.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/ProgramFlow/FibonacciSeries/FibonacciSeries.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/ProgramFlow/FibonacciSeries/FibonacciSeries.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/ProgramFlow/FibonacciSeries/FibonacciSeriesVME.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/SimpleAdd/SimpleAdd.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/SimpleAdd/SimpleAdd.cmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/SimpleAdd/SimpleAdd.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/SimpleAdd/SimpleAdd.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/SimpleAdd/SimpleAdd.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/SimpleAdd/SimpleAddVME.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/StackTest/StackTest.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/StackTest/StackTest.cmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/StackTest/StackTest.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/StackTest/StackTest.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/StackTest/StackTest.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/StackTest/StackTestVME.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/StaticTest/StaticTest.asm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/StaticTest/StaticTest.cmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/StaticTest/StaticTest.out" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/StaticTest/StaticTest.tst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/StaticTest/StaticTest.vm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../07-08/bin/StaticTest/StaticTestVME.tst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JackAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/JackAnalyzer.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -100,12 +16,15 @@
     <session id="306650079">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
+          <entry key="project.closed" value="7" />
           <entry key="project.open.time.0" value="1" />
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.4" value="1" />
-          <entry key="project.open.time.6" value="1" />
-          <entry key="project.open.time.7" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.6" value="2" />
+          <entry key="project.open.time.7" value="2" />
+          <entry key="project.open.time.9" value="1" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -121,12 +40,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="4756" />
+          <entry key="py" value="12690" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="4756" />
+          <entry key="Python" value="12690" />
         </counts>
       </usages-collector>
     </session>
@@ -136,12 +55,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/JackAnalyzer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+            <state relative-caret-position="1425">
+              <caret line="294" lean-forward="true" selection-start-line="294" selection-end-line="294" />
               <folding>
-                <marker date="1544463162693" expanded="true" signature="20:25" ph="..." />
-                <marker date="1544463162693" expanded="true" signature="3894:4166" ph="..." />
-                <marker date="1544463162693" expanded="true" signature="4686:4695" ph="..." />
+                <marker date="1545222284084" expanded="true" signature="20:25" ph="..." />
               </folding>
             </state>
           </provider>
@@ -152,7 +69,20 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>string_val</find>
+      <find>self</find>
+      <find>self.xml_file.write(JackTokenizer</find>
+      <find>JackTokenizer</find>
+      <find>type_index</find>
+      <find>.find</find>
+      <find>' '.</find>
+      <find>list_t_xml</find>
+      <find>list_tokens</find>
     </findStrings>
+    <replaceStrings>
+      <replace>JackTokenizer</replace>
+      <replace>self.xml_file.write(JackTokenizer</replace>
+      <replace>statement_head_types_indexes[i]</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -165,10 +95,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-12" />
-    <option name="y" value="-12" />
-    <option name="width" value="3026" />
-    <option name="height" value="1946" />
+    <option name="x" value="3481" />
+    <option name="y" value="340" />
+    <option name="width" value="757" />
+    <option name="height" value="487" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -239,14 +169,14 @@
     <configuration />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1513" height="973" extended-state="6" />
+    <frame x="2992" y="-8" width="1096" height="1896" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.34732565" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.6767486" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.287687" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.07490218" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -265,12 +195,10 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch_1.py" />
     <entry file="file://$PROJECT_DIR$/JackAnalyzer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
+        <state relative-caret-position="1425">
+          <caret line="294" lean-forward="true" selection-start-line="294" selection-end-line="294" />
           <folding>
-            <marker date="1544463162693" expanded="true" signature="20:25" ph="..." />
-            <marker date="1544463162693" expanded="true" signature="3894:4166" ph="..." />
-            <marker date="1544463162693" expanded="true" signature="4686:4695" ph="..." />
+            <marker date="1545222284084" expanded="true" signature="20:25" ph="..." />
           </folding>
         </state>
       </provider>
