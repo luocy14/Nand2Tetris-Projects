@@ -1,3 +1,6 @@
+import re
+
+
 class JackTokenizer:
     keywords = ['class', 'constructor', 'function', 'method', 'field', 'static', 'var', 'int', 'char', 'boolean',
                 'void', 'true', 'false', 'null', 'this', 'let', 'do', 'if', 'else', 'while', 'return']
@@ -5,8 +8,8 @@ class JackTokenizer:
 
     def __init__(self, file_name):
         self.jack_file = open(file_name, 'r')
-        self.xml_file = open(file_name.replace('.jack', 'T.xml'), 'w')
-        self.xml_file.write('<tokens>\n')
+        self.t_xml_file = open(file_name.replace('.jack', 'T.xml'), 'w')
+        self.t_xml_file.write('<tokens>\n')
 
     def advance(self):
         cur_line = self.jack_file.readline()
@@ -26,13 +29,14 @@ class JackTokenizer:
                             for char in list_cur_item:
                                 if (char in JackTokenizer.symbols) and not in_string:
                                     if list_cur_item.index(char) != 0:
-                                        self.xml_file.write(JackTokenizer.process_prev_string(''.join(list_cur_item[:list_cur_item.index(char)])))
-                                    self.xml_file.write(JackTokenizer.symbol(char))
+                                        self.t_xml_file.write(JackTokenizer.process_prev_string(
+                                            ''.join(list_cur_item[:list_cur_item.index(char)])))
+                                    self.t_xml_file.write(JackTokenizer.symbol(char))
                                     list_cur_item = list_cur_item[list_cur_item.index(char) + 1:]
                                 elif char == '\"':
                                     if in_string:
                                         cur_string += (' ' + ''.join(list_cur_item[:list_cur_item.index(char)]))
-                                        self.xml_file.write(JackTokenizer.string_val(cur_string))
+                                        self.t_xml_file.write(JackTokenizer.string_val(cur_string))
                                         cur_string = ''
                                         list_cur_item = list_cur_item[list_cur_item.index(char) + 1:]
                                     else:
@@ -44,30 +48,31 @@ class JackTokenizer:
                         if item.startswith('//'):
                             break
                         elif item in JackTokenizer.keywords:
-                            self.xml_file.write(JackTokenizer.keyword(item))
+                            self.t_xml_file.write(JackTokenizer.keyword(item))
                         elif item.isdigit():
-                            self.xml_file.write(JackTokenizer.int_val(item))
+                            self.t_xml_file.write(JackTokenizer.int_val(item))
                         elif item in JackTokenizer.symbols:
-                            self.xml_file.write(JackTokenizer.symbol(item))
+                            self.t_xml_file.write(JackTokenizer.symbol(item))
                         elif item.isalnum():
-                            self.xml_file.write(JackTokenizer.identifier(item))
+                            self.t_xml_file.write(JackTokenizer.identifier(item))
                         else:
                             list_cur_item = list(item)
                             for char in list_cur_item:
                                 if char in JackTokenizer.symbols:
                                     if list_cur_item.index(char) != 0:
-                                        self.xml_file.write(JackTokenizer.process_prev_string(''.join(list_cur_item[:list_cur_item.index(char)])))
-                                    self.xml_file.write(JackTokenizer.symbol(char))
+                                        self.t_xml_file.write(JackTokenizer.process_prev_string(
+                                            ''.join(list_cur_item[:list_cur_item.index(char)])))
+                                    self.t_xml_file.write(JackTokenizer.symbol(char))
                                     list_cur_item = list_cur_item[list_cur_item.index(char) + 1:]
                                 elif char == '\"':
                                     in_string = not in_string
                                     cur_string += ''.join(list_cur_item[list_cur_item.index(char) + 1:])
                                     break
                                 elif list_cur_item.index(char) == len(list_cur_item) - 1:
-                                    self.xml_file.write(JackTokenizer.process_prev_string(''.join(list_cur_item)))
+                                    self.t_xml_file.write(JackTokenizer.process_prev_string(''.join(list_cur_item)))
             cur_line = self.jack_file.readline()
-        self.xml_file.write('</tokens>\n')
-        self.xml_file.close()
+        self.t_xml_file.write('</tokens>\n')
+        self.t_xml_file.close()
         self.jack_file.close()
 
     @staticmethod
@@ -110,183 +115,278 @@ class JackTokenizer:
 
 
 class CompilationEngine:
+    op = ['+', '-', '*', '/', '&', '|', '<', '>', '=']
+
     def __init__(self, file_name):
         self.t_xml_file = open(file_name.replace('.jack', 'T.xml'), 'r')
         self.xml_file = open(file_name.replace('.jack', '.xml'), 'w')
-        self.list_tokens = []
-        cur_line = self.t_xml_file.readline()
-        while cur_line:
-            self.list_tokens.append(cur_line.split())
-            cur_line = self.t_xml_file.readline()
-        self.list_tokens = self.list_tokens[1:-1]
-        self.t_xml_file.close()
+        self.indent_count = 0
+        self.written = True
+        self.t_xml_file.readline()  # skip <tokens> line
 
+    # className '{' classVarDec* subroutineDec* '}'
     def compile_class(self):
-        output = '<class>\n\t' + JackTokenizer.keyword('class') + '\t' + JackTokenizer.identifier(self.list_tokens[2][1]) + '\t' + JackTokenizer.symbol('{')
-        subroutine_head_indexes = []
-        for i in range(len(self.list_tokens)):
-            if self.list_tokens[i][1] in ['static', 'field']:
-                for m in range(i+2, len(self.list_tokens)):
-                    if self.list_tokens[m][1] == ';':
-                        output += CompilationEngine.compile_class_var_dec(self.list_tokens[i:m+1])
-                        break
-            elif self.list_tokens[i][1] in ['constructor', 'function', 'method']:
-                subroutine_head_indexes.append(i)
-        for m in range(len(subroutine_head_indexes)-1):
-            output += CompilationEngine.compile_subroutine(self.list_tokens[subroutine_head_indexes[m]: subroutine_head_indexes[m+1]])
-        output += CompilationEngine.compile_subroutine(self.list_tokens[subroutine_head_indexes[-1]: -2])
-        output += '\t' + JackTokenizer.symbol('}') + '<\class>\n'
-        self.xml_file.write(output)
-        self.xml_file.close()
-        return output
+        self.write_open_tag('class')
+        self.write_next_token()  # 'class'
+        self.write_next_token()  # className
+        self.write_next_token()  # '{'
+        while self.is_class_var_dec():
+            self.compile_class_var_dec()
+            self.save_token_if_written()
 
-    @staticmethod
-    def compile_class_var_dec(tokens):
-        output = '\t<classVarDec>\n'
-        for token in tokens:
-            output += '\t\t' + ' '.join(token)
-        output += '\t</classVarDec>\n'
-        return output
+        while self.is_subroutine_dec():
+            self.compile_subroutine()
+            self.save_token_if_written()
 
-    @staticmethod
-    def compile_subroutine(tokens):
-        output = '\t<subroutineDec>\n'
-        for token in tokens[:4]:
-            output += '\t\t' + ' '.join(token)
-        output += CompilationEngine.compile_parameter_list(tokens[[token[1] for token in tokens].index('(')+1:[token[1] for token in tokens].index(')')]) + '\t\t' + JackTokenizer.symbol(')') + '\t\t<subroutineBody>\n\t\t' + JackTokenizer.symbol('{')
-        for i in range([token[1] for token in tokens].index('{')+1, len(tokens)):
-            if tokens[i][1] == 'var':
-                for m in range(i+2, len(tokens)):
-                    if tokens[m][1] == ';':
-                        statement_start = m + 1
-                        output += CompilationEngine.compile_var_dec(tokens[i:statement_start])
-                        break
-            output += CompilationEngine.compile_statements(tokens[statement_start:-1])
-        output += '\t\t' + JackTokenizer.symbol('}') + '\t\t</subroutineBody>\n\t</subroutineDec>\n'
-        return output
+        self.write_next_token()  # '}'
+        self.write_close_tag('class')
 
-    @staticmethod
-    def compile_parameter_list(tokens):
-        output = '\t\t<parameterList>\n'
-        for token in tokens:
-            output += '\t\t\t' + ' '.join(token)
-        output += '\t\t</parameterList>\n'
-        return output
+    def compile_class_var_dec(self):
+        self.write_open_tag('classVarDec')
+        self.write_next_token()  # '('static' | 'field')'
+        self.write_next_token()  # type
+        self.write_next_token()  # varName
+        self.compile_multiple(',', 'identifier')  # (',' varName)*
+        self.write_next_token()  # ';'
+        self.write_close_tag('classVarDec')
 
-    @staticmethod
-    def compile_var_dec(tokens):
-        output = '\t\t\t<varDec>\n'
-        for token in tokens:
-            output += '\t\t\t\t' + ' '.join(token)
-        output += '\t\t\t</varDec>\n'
-        return output
+    # subroutineDec: ('constructor' | 'function' | 'method') ('void' | type) subroutineName '(' parameterList ')' subroutineBody
+    # subroutineBody: '{' varDec* statements '}'
+    def compile_subroutine(self):
+        self.write_open_tag('subroutineDec')
+        self.write_next_token()  # ('constructor' | 'function' | 'method')
+        self.write_next_token()  # ('void' | type)
+        self.write_next_token()  # subroutineName
+        self.write_next_token()  # '('
+        self.compile_parameter_list()  # parameterList
+        self.write_next_token()  # ')'
+        self.write_open_tag('subroutineBody')
+        self.write_next_token()  # '{'
+        self.save_token_if_written()
+        while 'var' in self.current_token:
+            self.compile_var_dec()  # varDec*
+            self.save_token_if_written()
+        self.compile_statements()  # statements
+        self.write_next_token()  # '}'
+        self.write_close_tag('subroutineBody')
+        self.write_close_tag('subroutineDec')
 
-    @staticmethod
-    def compile_statements(tokens):
-        output = '\t\t\t<statements>\n'
-        statement_head_types_indexes = []
-        for i in range(len(tokens)):
-            if tokens[i][1] in ['let', 'if', 'while', 'do', 'return']:
-                statement_head_types_indexes.append([tokens[i][1], i])
-        for i in range(len(statement_head_types_indexes)):
-            if i == len(statement_head_types_indexes)-1:
-                if statement_head_types_indexes[i][0] == 'let':
-                    output += CompilationEngine.compile_let(tokens[statement_head_types_indexes[i][1]:])
-                elif statement_head_types_indexes[i][0] == 'if':
-                    output += CompilationEngine.compile_if(tokens[statement_head_types_indexes[i][1]:])
-                elif statement_head_types_indexes[i][0] == 'while':
-                    output += CompilationEngine.compile_while(tokens[statement_head_types_indexes[i][1]:])
-                elif statement_head_types_indexes[i][0] == 'do':
-                    output += CompilationEngine.compile_do(tokens[statement_head_types_indexes[i][1]:])
-                elif statement_head_types_indexes[i][0] == 'return':
-                    output += CompilationEngine.compile_return(tokens[statement_head_types_indexes[i][1]:])
-            else:
-                if statement_head_types_indexes[i][0] == 'let':
-                    output += CompilationEngine.compile_let(tokens[statement_head_types_indexes[i][1]:statement_head_types_indexes[i+1][1]])
-                elif statement_head_types_indexes[i][0] == 'if':
-                    output += CompilationEngine.compile_if(tokens[statement_head_types_indexes[i][1]:statement_head_types_indexes[i+1][1]])
-                elif statement_head_types_indexes[i][0] == 'while':
-                    output += CompilationEngine.compile_while(tokens[statement_head_types_indexes[i][1]:statement_head_types_indexes[i+1][1]])
-                elif statement_head_types_indexes[i][0] == 'do':
-                    output += CompilationEngine.compile_do(tokens[statement_head_types_indexes[i][1]:statement_head_types_indexes[i+1][1]])
-                elif statement_head_types_indexes[i][0] == 'return':
-                    output += CompilationEngine.compile_return(tokens[statement_head_types_indexes[i][1]:statement_head_types_indexes[i+1][1]])
-        output += '\t\t\t</statements>\n'
-        return output
-    
-    @staticmethod
-    def compile_do(tokens):
-        output = '\t\t\t\t<doStatement>\n'
-        for token in tokens[:[token[1] for token in tokens].index('(')+1]:
-            output += '\t\t\t\t\t' + ' '.join(token)
-        output += CompilationEngine.compile_expression_list(tokens[[token[1] for token in tokens].index('(')+1:[token[1] for token in tokens].index(')')]) + '\t\t\t\t\t' + JackTokenizer.symbol(')') + tokens[-1] + '\t\t\t\t</doStatement>\n'
-        return output
-    
-    @staticmethod
-    def compile_let(tokens):
-        output = '\t\t\t\t<letStatement>\n'
-        for token in tokens[:3]:
-            output += '\t\t\t\t\t' + ' '.join(token)
-        if tokens[2][1] == '[':
-            output += CompilationEngine.compile_expression(tokens[3:[token[1] for token in tokens].index(']')]) + '\t\t\t\t\t' + JackTokenizer.symbol(']') + '\t\t\t\t\t' + JackTokenizer.symbol('=')
-        output += CompilationEngine.compile_expression(tokens[[token[1] for token in tokens].index('=')+1:[token[1] for token in tokens].index(';')]) + '\t\t\t\t\t' + tokens[-1] + '\t\t\t\t</letStatement>\n'
-        return output
-    
-    @staticmethod
-    def compile_while(tokens):
-        output = '\t\t\t\t<whileStatement>\n'
-        for token in tokens[:2]:
-            output += '\t\t\t\t\t' + ' '.join(token)
-        output += CompilationEngine.compile_expression(tokens[2:[token[1] for token in tokens].index(')')]) + '\t\t\t\t\t' + JackTokenizer.symbol(')') + '\t\t\t\t\t' + JackTokenizer.symbol('{') + CompilationEngine.compile_statements(tokens[[token[1] for token in tokens].index('{')+1:tokens[::-1].index('}')]) + '\t\t\t\t\t' + JackTokenizer.symbol('}') + '\t\t\t\t</whileStatement>\n'
-        return output
-    
-    @staticmethod
-    def compile_return(tokens):
-        output = '\t\t\t\t<returnStatement>\n\t\t\t\t\t' + tokens[0]
-        if tokens[1][1] == ';':
-            output += '\t\t\t\t\t' + ' '.join(tokens[1])
+    # ( (type varName) (',' type varName)*)?
+    def compile_parameter_list(self):
+        self.write_open_tag('parameterList')
+        self.save_token_if_written()
+        if ')' not in self.current_token:
+            self.write_next_token()  # type
+            self.write_next_token()  # varName
+            self.save_token_if_written()
+        while ')' not in self.current_token:
+            self.write_next_token()  # ','
+            self.write_next_token()  # type
+            self.write_next_token()  # varName
+            self.save_token_if_written()
+        self.write_close_tag('parameterList')
+
+    # 'var' type varName (',' varName)* ';'
+    def compile_var_dec(self):
+        self.write_open_tag('varDec')
+        self.write_next_token()  # 'var'
+        self.write_next_token()  # type
+        self.write_next_token()  # varName
+        self.compile_multiple(',', 'identifier')  # (',' varName)*
+        self.write_next_token()  # ';'
+        self.write_close_tag('varDec')
+
+    # statement*
+    # letStatement | ifStatement | whileStatement | doStatement | returnStatement
+    def compile_statements(self):
+        self.write_open_tag('statements')
+        while self.is_statement():
+            if 'let' in self.current_token:
+                self.compile_let()
+            elif 'if' in self.current_token:
+                self.compile_if()
+            elif 'while' in self.current_token:
+                self.compile_while()
+            elif 'do' in self.current_token:
+                self.compile_do()
+            elif 'return' in self.current_token:
+                self.compile_return()
+            self.save_token_if_written()
+        self.write_close_tag('statements')
+
+    # 'do' subroutineCall ';'
+    # subroutineCall: subroutineName '(' expressionList ')' | (className | varName) '.' subroutineName '(' expressionList ')'
+    def compile_do(self):
+        self.write_open_tag('doStatement')
+        self.write_next_token()  # 'do'
+        self.write_next_token()  # (subroutineName | className | varName)
+        self.save_token_if_written()
+        if '.' in self.current_token:
+            self.write_next_token()  # '.'
+            self.write_next_token()  # subroutineName
+        self.write_next_token()  # '('
+        self.compile_expression_list()  # expressionList
+        self.write_next_token()  # ')'
+        self.write_next_token()  # ';'
+        self.write_close_tag('doStatement')
+
+    # 'let' varName ('[' expression ']')? '=' expression ';'
+    def compile_let(self):
+        self.write_open_tag('letStatement')
+        self.write_next_token()  # 'let'
+        self.write_next_token()  # varName
+        self.save_token_if_written()
+        if '[' in self.current_token:  # ('[' expression ']')?
+            self.write_next_token()  # '['
+            self.compile_expression()  # expression
+            self.write_next_token()  # ']'
+        self.write_next_token()  # '='
+        self.compile_expression()  # expression
+        self.write_next_token()  # ';'
+        self.write_close_tag('letStatement')
+
+    # 'while' '(' expression ')' '{' statements '}'
+    def compile_while(self):
+        self.write_open_tag('whileStatement')
+        self.write_next_token()  # 'while'
+        self.write_next_token()  # '('
+        self.compile_expression()  # expression
+        self.write_next_token()  # ')'
+        self.write_next_token()  # '{'
+        self.compile_statements()  # statements
+        self.write_next_token()  # '}'
+        self.write_close_tag('whileStatement')
+
+    # 'return' expression? ';'
+    def compile_return(self):
+        self.write_open_tag('returnStatement')
+        self.write_next_token()  # 'return'
+        self.save_token_if_written()
+        if ';' not in self.current_token:  # expression?
+            self.compile_expression()  # expression
+        self.write_next_token()  # ';'
+        self.write_close_tag('returnStatement')
+
+    # 'if' '(' expression ')' '{' statements '}' ( 'else' '{' statements '}' )?
+    def compile_if(self):
+        self.write_open_tag('ifStatement')
+        self.write_next_token()  # if
+        self.write_next_token()  # '('
+        self.compile_expression()  # expression
+        self.write_next_token()  # ')'
+        self.write_next_token()  # '{'
+        self.compile_statements()  # statements
+        self.write_next_token()  # '}'
+        self.save_token_if_written()
+        if 'else' in self.current_token:  # else?
+            self.write_next_token()  # else
+            self.write_next_token()  # '{'
+            self.compile_statements()  # statements
+            self.write_next_token()  # '}'
+        self.write_close_tag('ifStatement')
+
+    # term (op term)*
+    def compile_expression(self):
+        self.write_open_tag('expression')
+        self.compile_term()  # term
+        while self.is_op():
+            self.write_next_token()  # op
+            self.compile_term()  # term
+        self.write_close_tag('expression')
+
+    # integerConstant | stringConstant | keywordConstant | varName | varName '[' expression ']' | subroutineCall | '(' expression ')' | unaryOp term
+    def compile_term(self):
+        self.write_open_tag('term')
+        self.save_token_if_written()
+        if self.is_unary_op_term():
+            self.write_next_token()  # unaryOp
+            self.compile_term()  # term
+        elif '(' in self.current_token:
+            self.write_next_token()  # '('
+            self.compile_expression()  # expression
+            self.write_next_token()  # ')'
+        else:  # first is an identifier
+            self.write_next_token()  # identifier
+            self.save_token_if_written()
+            if '[' in self.current_token:
+                self.write_next_token()  # '['
+                self.compile_expression()  # expression
+                self.write_next_token()  # ']'
+            elif '.' in self.current_token:
+                self.write_next_token()  # '.'
+                self.write_next_token()  # subroutineName
+                self.write_next_token()  # '('
+                self.compile_expression_list()  # expressionList
+                self.write_next_token()  # ')'
+            elif '(' in self.current_token:
+                self.write_next_token()  # '('
+                self.compile_expression_list()  # expressionList
+                self.write_next_token()  # ')'
+        self.write_close_tag('term')
+
+    # (expression (',' expression)* )?
+    def compile_expression_list(self):
+        self.write_open_tag('expressionList')
+        self.save_token_if_written()
+        if ')' not in self.current_token:
+            self.compile_expression()  # expression
+            self.save_token_if_written()  # for while
+        while ')' not in self.current_xml_token:
+            self.write_next_token()  # ','
+            self.compile_expression()  # expression
+            self.save_token_if_written()
+        self.write_close_tag('expressionList')
+
+    # starts here
+    def compile_multiple(self, first_identifier, second_identifier):
+        self.save_token_if_written()
+        while first_identifier in self.current_token or second_identifier in self.current_token:
+            self.write_next_token()
+            self.save_token_if_written()
+
+    def is_class_var_dec(self):
+        self.save_token_if_written()
+        return 'static' in self.current_token or 'field' in self.current_token
+
+    def is_subroutine_dec(self):
+        self.save_token_if_written()
+        return 'constructor' in self.current_token or 'function' in self.current_token or 'method' in self.current_token
+
+    def is_statement(self):
+        self.save_token_if_written()
+        return 'let' in self.current_token or 'if' in self.current_token or 'while' in self.current_token or 'do' in self.current_token or 'return' in self.current_token
+
+    def is_op(self):
+        self.save_token_if_written()
+        return re.search(r'> (\+|-|\*|/|&amp;|\||&lt;|&gt;|=) <', self.current_token)
+
+    def is_unary_op_term(self):
+        self.save_token_if_written()
+        return re.search(r'> (-|~) <', self.current_token)
+
+    def write_next_token(self):
+        if self.written:
+            self.current_token = self.t_xml_file.readline()
         else:
-            output += CompilationEngine.compile_expression(tokens[1:[token[1] for token in tokens].index(';')]) + '\t\t\t\t\t' + tokens[-1] + '\t\t\t\t</returnStatement>\n'
-        return output
-    
-    @staticmethod
-    def compile_if(tokens):
-        output = '\t\t\t\t<ifStatement>\n'
-        for token in tokens[:2]:
-            output += '\t\t\t\t\t' + ' '.join(token)
-        output += CompilationEngine.compile_expression(tokens[2:[token[1] for token in tokens].index(')')]) + '\t\t\t\t\t' + JackTokenizer.symbol(')') + '\t\t\t\t\t' + JackTokenizer.symbol('{')
-        if 'else' in tokens:
-            output += CompilationEngine.compile_statements(tokens[[token[1] for token in tokens].index('{')+1, (tokens[:[token[1] for token in tokens].index('else')])[::-1].index('}')]) + '\t\t\t\t\t' + JackTokenizer.symbol('}')
-            for token in tokens[[token[1] for token in tokens].index('else'):[token[1] for token in tokens].index('else')+2]:
-                output += '\t\t\t\t\t' + ' '.join(token)
-            output += CompilationEngine.compile_expression(tokens[[token[1] for token in tokens].index('else')+2:tokens[::-1].index('}')]) + '\t\t\t\t\t' + JackTokenizer.symbol('}')
-        else:
-            output += CompilationEngine.compile_statements(tokens[[token[1] for token in tokens].index('{')+1, tokens[::-1].index('}')]) + '\t\t\t\t\t' + JackTokenizer.symbol('}')
-        output += '\t\t\t\t</ifStatement>\n'
-        return output
+            self.written = True
+        self.xml_file.write(self.current_indent() + self.current_token)
 
-    @staticmethod
-    def compile_expression(tokens):
-        output = ''
-        return output
+    def save_token_if_written(self):
+        if self.written:
+            self.current_token = self.t_xml_file.readline()
+            self.written = False
 
-    @staticmethod
-    def compile_term(tokens):
-        output = ''
-        return output
+    def write_open_tag(self, tag):
+        self.xml_file.write(self.current_indent() + '<' + tag + '>\n')
+        self.indent_count += 1
 
-    @staticmethod
-    def compile_expression_list(tokens):
-        output = '\t\t\t\t\t<expressionList>\n'
-        comma_indexes = []
-        for i in range(len(tokens)):
-            if tokens[i][1] == ',':
-                comma_indexes.append(i)
-        output += CompilationEngine.compile_expression(tokens[:comma_indexes[0]])
-        for i in range(1, len(comma_indexes)):
-            output += '\t\t\t\t\t\t' + JackTokenizer.symbol(',') + CompilationEngine.compile_expression(tokens[:comma_indexes[i]])
-        return output
-    
+    def write_close_tag(self, tag):
+        self.indent_count -= 1
+        self.xml_file.write(self.current_indent() + '</' + tag + '>\n')
+
+    def current_indent(self):
+        return '\t' * self.indent_count
+
 
 class JackAnalyzer:
     def __init__(self, file_name):
@@ -296,4 +396,4 @@ class JackAnalyzer:
         test_compilation_engine.compile_class()
 
 
-test_jack_analyzer = JackAnalyzer('ExpressionLessSquare/Main.jack')
+test_jack_analyzer = JackAnalyzer('')  # enter your file path here
