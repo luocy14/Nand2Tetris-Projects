@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="bbe894e9-9f45-4686-b629-05b980872401" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CompilationEngine.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FileSet.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JackCompiler.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/JackTokenizer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SymbolTable.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Util.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/VMWriter.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../10/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../10/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../10/JackAnalyzer.py" beforeDir="false" afterPath="$PROJECT_DIR$/../10/JackAnalyzer.py" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="110136575">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.open.time.0" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="4657" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="4657" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="8" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="8" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/JackTokenizer.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="720">
+              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+                <marker date="1545575128527" expanded="true" signature="49:54" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CompilationEngine.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="7" column="27" lean-forward="true" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+                <marker date="1545578500235" expanded="true" signature="72:77" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="741:746" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="1181:1186" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="1816:1821" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="3649:3654" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="4168:4173" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="4641:4646" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="4844:4849" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="5926:5931" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="6627:6632" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="6936:6941" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="7905:7910" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="8535:8540" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="10355:10360" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="10686:10691" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="11141:11146" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="12507:12512" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="13259:13264" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="13356:13361" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="13447:13452" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="13556:13561" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="13618:13623" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="13679:13684" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="13740:13745" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="13877:13882" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="13948:13953" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="14100:14105" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="14190:14195" ph="..." />
+                <marker date="1545578500235" expanded="true" signature="14258:14263" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/JackCompiler.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="700">
+              <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
+                <marker date="1545580686927" expanded="true" signature="242:247" ph="..." />
+                <marker date="1545580686927" expanded="true" signature="712:717" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>compileSubroutine</find>
+      <find>startSubroutine</find>
+      <find>compileParameterList</find>
+      <find>varCount</find>
+      <find>compileStatements</find>
+      <find>compile_parameterList</find>
+      <find>compileVarDec</find>
+      <find>compileIf</find>
+      <find>compileDo</find>
+      <find>compileWhile</find>
+      <find>compileExpression</find>
+      <find>compileTerm</find>
+      <find>kindOf</find>
+      <find>indexOf</find>
+      <find>compile_expressionList</find>
+      <find>typeOf</find>
+      <find>writePush</find>
+      <find>writePop</find>
+      <find>writeArithmetic</find>
+      <find>writeLabel</find>
+      <find>writeGoto</find>
+      <find>writeIf</find>
+      <find>writeCall</find>
+      <find>writeFunction</find>
+      <find>writeReturn</find>
+      <find>repeatedChar</find>
+      <find>getCommandLineArgument</find>
+      <find>hasMoreFiles</find>
+      <find>nextFile</find>
+      <find>Main</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>compile_class_var_dec</replace>
+      <replace>compile_subroutine</replace>
+      <replace>start_subroutine</replace>
+      <replace>compile_parameterList</replace>
+      <replace>var_count</replace>
+      <replace>compile_statements</replace>
+      <replace>compile_parameter_list</replace>
+      <replace>compile_var_dec</replace>
+      <replace>compile_do</replace>
+      <replace>compile_while</replace>
+      <replace>compile_expression</replace>
+      <replace>compile_term</replace>
+      <replace>kind_of</replace>
+      <replace>index_of</replace>
+      <replace>compile_expression_list</replace>
+      <replace>type_of</replace>
+      <replace>write_push</replace>
+      <replace>write_pop</replace>
+      <replace>write_arithmetic</replace>
+      <replace>write_label</replace>
+      <replace>write_goto</replace>
+      <replace>write_if</replace>
+      <replace>write_call</replace>
+      <replace>write_function</replace>
+      <replace>write_return</replace>
+      <replace>repeated_char</replace>
+      <replace>get_command_line_argument</replace>
+      <replace>has_more_files</replace>
+      <replace>next_file</replace>
+      <replace>JackCompiler</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/SymbolTable.py" />
+        <option value="$PROJECT_DIR$/JackTokenizer.py" />
+        <option value="$PROJECT_DIR$/CompilationEngine.py" />
+        <option value="$PROJECT_DIR$/VMWriter.py" />
+        <option value="$PROJECT_DIR$/Util.py" />
+        <option value="$PROJECT_DIR$/FileSet.py" />
+        <option value="$PROJECT_DIR$/JackCompiler.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="1490" />
+    <option name="width" value="1522" />
+    <option name="height" value="1932" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="11" type="b2602c69:ProjectViewProjectNode" />
+              <item name="11" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Course" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="Python" />
+    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="745" y="0" width="761" height="966" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" weight="0.24827586" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Python Console" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$APPLICATION_CONFIG_DIR$/scratches/scratch.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SymbolTable.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1220">
+          <caret line="61" column="13" lean-forward="true" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
+          <folding>
+            <marker date="1545569193543" expanded="true" signature="18:23" ph="..." />
+            <marker date="1545569193543" expanded="true" signature="300:305" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JackTokenizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1545575128527" expanded="true" signature="49:54" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/VMWriter.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="860">
+          <caret line="37" column="27" selection-start-line="37" selection-start-column="27" selection-end-line="37" selection-end-column="27" />
+          <folding>
+            <marker date="1545578913433" expanded="true" signature="52:57" ph="..." />
+            <marker date="1545578913433" expanded="true" signature="219:224" ph="..." />
+            <marker date="1545578913433" expanded="true" signature="551:556" ph="..." />
+            <marker date="1545578913433" expanded="true" signature="886:891" ph="..." />
+            <marker date="1545578913433" expanded="true" signature="1003:1008" ph="..." />
+            <marker date="1545578913433" expanded="true" signature="1121:1126" ph="..." />
+            <marker date="1545578913433" expanded="true" signature="1238:1243" ph="..." />
+            <marker date="1545578913433" expanded="true" signature="1363:1368" ph="..." />
+            <marker date="1545578913433" expanded="true" signature="1506:1511" ph="..." />
+            <marker date="1545578913433" expanded="true" signature="1636:1641" ph="..." />
+            <marker date="1545578913433" expanded="true" signature="1725:1730" ph="..." />
+            <marker date="1545578913433" expanded="true" signature="1796:1801" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FileSet.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <marker date="1545579710251" expanded="true" signature="1206:1211" ph="..." />
+            <marker date="1545579710251" expanded="true" signature="1545:1550" ph="..." />
+            <marker date="1545579710251" expanded="true" signature="1642:1647" ph="..." />
+            <marker date="1545579710251" expanded="true" signature="1824:1829" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/CompilationEngine.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="7" column="27" lean-forward="true" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <marker date="1545578500235" expanded="true" signature="72:77" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="741:746" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="1181:1186" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="1816:1821" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="3649:3654" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="4168:4173" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="4641:4646" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="4844:4849" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="5926:5931" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="6627:6632" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="6936:6941" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="7905:7910" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="8535:8540" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="10355:10360" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="10686:10691" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="11141:11146" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="12507:12512" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="13259:13264" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="13356:13361" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="13447:13452" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="13556:13561" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="13618:13623" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="13679:13684" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="13740:13745" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="13877:13882" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="13948:13953" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="14100:14105" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="14190:14195" ph="..." />
+            <marker date="1545578500235" expanded="true" signature="14258:14263" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/JackCompiler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="700">
+          <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <marker date="1545580686927" expanded="true" signature="242:247" ph="..." />
+            <marker date="1545580686927" expanded="true" signature="712:717" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

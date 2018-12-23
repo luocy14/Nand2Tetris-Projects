@@ -1,4 +1,5 @@
 import re
+import itertools
 
 
 class JackTokenizer:
