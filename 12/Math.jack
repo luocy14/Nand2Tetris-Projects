@@ -9,12 +9,36 @@
  */
 class Math {
 
+	static Array bitMasks;
+
     /** Initializes the library. */
     function void init() {
+    	let bitMasks = Array.new(16);
+    	let bitMasks[0] = 1;
+    	let bitMasks[1] = 2;
+    	let bitMasks[2] = 4;
+    	let bitMasks[3] = 8;
+    	let bitMasks[4] = 16;
+    	let bitMasks[5] = 32;
+    	let bitMasks[6] = 64;
+    	let bitMasks[7] = 128;
+    	let bitMasks[8] = 256;
+    	let bitMasks[9] = 512;
+    	let bitMasks[10] = 1024;
+    	let bitMasks[11] = 2048;
+    	let bitMasks[12] = 4096;
+    	let bitMasks[13] = 8192;
+    	let bitMasks[14] = 16384;
+    	let bitMasks[15] = 16384 + 16384;
+    	return;
     }
 
     /** Returns the absolute value of x. */
     function int abs(int x) {
+    	if (x < 0) {
+    		let x = -x;
+    	}
+    	return x;
     }
 
     /** Returns the product of x and y. 
@@ -23,6 +47,24 @@ class Math {
      *  the Jack expressions x*y and multiply(x,y) return the same value.
      */
     function int multiply(int x, int y) {
+    	var int sum, shiftedX, j;
+    	if (x < 0) {
+    		return -Math.multiply(-x, y);
+    	}
+    	if (y < 0) {
+    		return -Math.multiply(x, -y);	
+    	}
+    	let sum = 0;
+    	let shiftedX = x;
+    	let j = 0;
+    	while (j < 16) {
+    		if (bitMasks[j] & y) {
+    			let sum = sum + shiftedX;
+    		}
+    		let shiftedX = shiftedX + shiftedX;
+    		let j = j + 1;
+    	}
+    	return sum;
     }
 
     /** Returns the integer part of x/y.
@@ -31,17 +73,62 @@ class Math {
      *  the Jack expressions x/y and divide(x,y) return the same value.
      */
     function int divide(int x, int y) {
+    	var int q;
+    	if (y = 0) {
+    		do Sys.error(3);
+    	}
+    	if (x < 0) {
+    		return -Math.divide(-x, y);
+    	}
+    	if (y < 0) {
+    		return -Math.divide(x, -y);
+    	}
+    	if (y > x) {
+    		return 0;
+    	}
+    	let q = Math.divide(x, y + y);
+    	if ((x - (q * y) - (q * y)) < y) {
+    		return q + q;
+    	}
+    	else {
+    		return q + q + 1;
+    	}
     }
 
     /** Returns the integer part of the square root of x. */
     function int sqrt(int x) {
+    	var int y, n, j, test;
+    	if (x < 0) {
+    		do Sys.error(4);
+    	}
+    	let n = 15;
+    	while (bitMasks[n] > x) {
+    		let n = n - 1;
+    	}
+    	let y = 0;
+    	let j = n/2 - 1;
+    	while ( ~(j < 0) ) {
+    		let test = (y + bitMasks[j]) * (y + bitMasks[j]);
+    		if ( ~(test > x) ) {
+    			let y = y + bitMasks[j];
+    		}
+    	}
+    	return y;
     }
 
     /** Returns the greater number. */
     function int max(int a, int b) {
+    	if (a > b) {
+    		return a;
+    	}
+    	return b;
     }
 
     /** Returns the smaller number. */
     function int min(int a, int b) {
+    	if (b > a) {
+    		return a;
+    	}
+    	return b;
     }
 }
